@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://damwgl3m2hni2"]
+
+[node name="World" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Players" type="Node" parent="."]
+
+[node name="TileMap" type="TileMap" parent="."]
+format = 2
+
+[node name="Marker2D" type="Marker2D" parent="."]

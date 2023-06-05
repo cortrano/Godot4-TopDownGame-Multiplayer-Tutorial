@@ -1,0 +1,93 @@
+[gd_scene load_steps=3 format=3 uid="uid://doj6w5hs16a43"]
+
+[ext_resource type="Script" path="res://Scenes/lobby.gd" id="1_r8hgo"]
+[ext_resource type="PackedScene" uid="uid://b8qd010mvwnk" path="res://Scenes/waiting_room.tscn" id="2_yqnrg"]
+
+[node name="Lobby" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_r8hgo")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.0156863, 0, 0.0666667, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 16
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "Lobby
+"
+horizontal_alignment = 1
+
+[node name="GridContainer" type="GridContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/h_separation = 16
+theme_override_constants/v_separation = 16
+columns = 2
+
+[node name="NameLabel" type="Label" parent="VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "Name:"
+
+[node name="NameTextBox" type="LineEdit" parent="VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+placeholder_text = "Enter Name"
+alignment = 1
+
+[node name="IPLabel" type="Label" parent="VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "IP Address:"
+
+[node name="IPTextBox" type="LineEdit" parent="VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+placeholder_text = "Enter IP Address"
+alignment = 1
+
+[node name="PortLabel" type="Label" parent="VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "Port:"
+
+[node name="PortTextBox" type="LineEdit" parent="VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+placeholder_text = "Enter Port Number"
+alignment = 1
+
+[node name="JoinButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Join Game"
+
+[node name="WaitingRoom" parent="." instance=ExtResource("2_yqnrg")]
+visible = false
+layout_mode = 1
+
+[connection signal="text_changed" from="VBoxContainer/GridContainer/NameTextBox" to="." method="_on_name_text_box_text_changed"]
+[connection signal="pressed" from="VBoxContainer/JoinButton" to="." method="_on_join_button_pressed"]
+[connection signal="pressed" from="WaitingRoom/VBoxContainer/ReadyButton" to="." method="_on_ready_button_pressed"]
+
+[editable path="WaitingRoom"]
